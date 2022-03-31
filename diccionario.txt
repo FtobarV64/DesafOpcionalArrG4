@@ -3,7 +3,6 @@ gato
 varios
 numeros
 otros
-varios
 abcde
 jklnm
 poiuy

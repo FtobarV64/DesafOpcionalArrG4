@@ -20,9 +20,33 @@
 # ● Se debe imprimir el número de iteraciones necesarias para llegar al
 # resultado en pantalla.
 
-def hacker_dict(dictionary="dicionario.txt", pwd)
+def hacker_dict(dictionary="diccionario.txt", pwd)
     # Accedemos al diccionario y leemos sus registros
     data_pwd = open(dictionary).readlines
+    # Quitamos el salto de linea a los registros del array
+    data_pwd = data_pwd.map do |words|
+        words = words.chomp
+    end
+    # Agregamos el postfijo a cada palabra del diccionario
+    data_pwd_1= data_pwd.map do |words|
+        words = words+"1"
+    end
+    data_pwd_12= data_pwd.map do |words|
+        words = words+"12"
+    end
+    data_pwd_123= data_pwd.map do |words|
+        words = words+"123"
+    end
+    # Creamos el arreglo y ordenamos el diccionario
+    data_pwd= (data_pwd+data_pwd_1+data_pwd_12+data_pwd_123).sort
+    # Buscamos la password dentro del diccionario
+    nbr_reg = data_pwd.count
+     nbr_reg.times do |x|
+        if data_pwd[x] == pwd
+            print x+1
+        end
+    end
 end
 
-print hacker_dict(gato)
+hacker_dict(ARGV[0].chomp,ARGV[1].chomp)
+puts
